@@ -10,12 +10,16 @@ public class MyFirstVerticle extends AbstractVerticle {
                 .requestHandler(req -> {
                     req.response().end("{\"message\": \"hello world\"}");
                 })
-                .listen(8080, result -> {
-                    if (result.succeeded()) {
-                        startFuture.complete();
-                    } else {
-                        startFuture.fail(result.cause());
-                    }
+                .listen(
+                        // retrieve the port from configuration 'http.port'
+                        // default will be 8080
+                        config().getInteger("http.port", 8080),
+                        result -> {
+                            if (result.succeeded()) {
+                                startFuture.complete();
+                            } else {
+                                startFuture.fail(result.cause());
+                            }
                 });
     }
 }
