@@ -1,4 +1,4 @@
-# Vert.X Samplese #
+# Vert.X Samples #
 
 * This repository is for all the samples I have tried out using vert.x micro-services tool-kit.
 
