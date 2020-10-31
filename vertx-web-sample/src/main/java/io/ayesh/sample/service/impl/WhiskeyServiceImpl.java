@@ -30,6 +30,16 @@ public class WhiskeyServiceImpl implements WhiskeyService {
     }
 
     @Override
+    public Whisky findOne(int id) {
+        return products.get(id);
+    }
+
+    @Override
+    public Whisky update(Whisky updatedWhisky) {
+        return products.put(updatedWhisky.getId(), updatedWhisky);
+    }
+
+    @Override
     public void remove(int id) {
         products.remove(id);
     }

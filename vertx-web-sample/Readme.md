@@ -35,7 +35,9 @@
 * Accessing REST API.
 
 ```
-    FIND ALL  HTTP GET -> http://localhost:8080/api/whiskies
-    CREATE    HTTP POST -> http://localhost:8080/api/whiskies
-    DELETE    HTTP DELETE -> http://localhost:8080/api/whiskies/1
+    FIND ALL    HTTP GET -> http://localhost:8080/api/whiskies
+    CREATE      HTTP POST -> http://localhost:8080/api/whiskies
+    GET ONE     HTTP GET -> http://localhost:8080/api/whiskies/1
+    UPDATE ONE  HTTP PUT -> http://localhost:8080/api/whiskies/1
+    DELETE ONE  HTTP DELETE -> http://localhost:8080/api/whiskies/1
 ```

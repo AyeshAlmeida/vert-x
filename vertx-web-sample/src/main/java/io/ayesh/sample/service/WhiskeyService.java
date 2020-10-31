@@ -9,5 +9,9 @@ public interface WhiskeyService {
 
     Whisky addOne(Whisky whisky);
 
+    Whisky findOne(int id);
+
+    Whisky update(Whisky updatedWhisky);
+
     void remove(int id);
 }

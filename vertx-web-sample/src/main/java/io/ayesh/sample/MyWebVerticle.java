@@ -7,6 +7,7 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.Json;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
@@ -47,6 +48,46 @@ public class MyWebVerticle extends AbstractVerticle {
                     .setStatusCode(201)
                     .putHeader("content-type", "application/json; charset=utf-8")
                     .end(Json.encodePrettily(responseBody));
+        });
+
+        // retrieve one whisky based on ID - (:id) is used as a path variable
+        router.get("/api/whiskies/:id").handler(routingContext -> {
+            String id = routingContext.request().getParam("id");
+            if (id == null) {
+                routingContext.response().setStatusCode(400).end();
+            } else {
+                int idAsInteger = Integer.parseInt(id);
+                Whisky whisky = service.findOne(idAsInteger);
+                if (whisky == null) {
+                    routingContext.response().setStatusCode(404).end();
+                } else {
+                    routingContext.response()
+                            .putHeader("content-type", "application/json; charset=utf-8")
+                            .end(Json.encodePrettily(whisky));
+                }
+            }
+        });
+
+        // update one whisky based on ID - (:id) is used as a path variable
+        router.put("/api/whiskies/:id").handler(routingContext -> {
+            final String id = routingContext.request().getParam("id");
+            JsonObject json = routingContext.getBodyAsJson();
+            if (id == null || json == null) {
+                routingContext.response().setStatusCode(400).end();
+            } else {
+                final Integer idAsInteger = Integer.valueOf(id);
+                Whisky whisky = service.findOne(idAsInteger);
+                if (whisky == null) {
+                    routingContext.response().setStatusCode(404).end();
+                } else {
+                    whisky.setName(json.getString("name"));
+                    whisky.setOrigin(json.getString("origin"));
+                    Whisky updatedWhisky = service.update(whisky);
+                    routingContext.response()
+                            .putHeader("content-type", "application/json; charset=utf-8")
+                            .end(Json.encodePrettily(updatedWhisky));
+                }
+            }
         });
 
         // deleting a whiskies based on ID - (:id) is used as a path variable
