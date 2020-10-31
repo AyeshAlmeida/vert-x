@@ -1,0 +1,62 @@
+#=== Eclipse Ignores =========
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+.cache
+
+#=== Idea Ignores ========
+*.iml
+*.ipr
+*.iws
+.idea/
+
+#=== Maven ========
+target/
+
+#=== Release plugin ====
+*.next
+*.releaseBackup
+*.tag
+*.versionBackup
+
+#=== JReble =====
+rebel.xml
+
+# Output directory #
+out/
+
+# Node
+node_modules/
+modules/charging/logs/
+.DS_Store
+logs/*
+npm-debug.log
+node_modules
+target-grunt
+jslibs
+package-lock.json
+build/Release
+build/
