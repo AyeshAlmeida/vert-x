@@ -43,11 +43,11 @@ public class MyWebVerticle extends AbstractVerticle {
         // maps HTTP POST to create new whiskey
         router.post("/api/whiskies").handler(routingContext -> {
             final Whisky whisky = Json.decodeValue(routingContext.getBodyAsString(), Whisky.class);
-            Whisky responseBody = service.addOne(whisky);
+            service.addOne(whisky);
             routingContext.response()
                     .setStatusCode(201)
                     .putHeader("content-type", "application/json; charset=utf-8")
-                    .end(Json.encodePrettily(responseBody));
+                    .end(Json.encodePrettily(whisky));
         });
 
         // retrieve one whisky based on ID - (:id) is used as a path variable
